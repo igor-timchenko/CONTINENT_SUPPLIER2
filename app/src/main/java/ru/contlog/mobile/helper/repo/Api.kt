@@ -13,24 +13,28 @@ import ru.contlog.mobile.helper.utils.await
 object Api {
     const val TAG = "Contlog.Api"
 
-    const val API_DOMAIN = ""
-    const val API_ENDPOINT = "https://$API_DOMAIN"
+    const val API_DOMAIN = "89.189.173.36:800"
+    const val API_ENDPOINT = "http://$API_DOMAIN"
 
     private val client = OkHttpClient()
+
+    private val jsonCoder = Json {
+        ignoreUnknownKeys = true
+    }
 
     object Auth {
         suspend fun getSms(
             phoneNumber: String
         ): ApiResponse {
             try {
-                val payload = Json.encodeToString(AuthGetSmsParams(phoneNumber))
+                val payload = jsonCoder.encodeToString(AuthGetSmsParams(phoneNumber))
 
                 val body = FormBody.Builder()
                     .add("data", payload)
                     .build()
 
                 val request = Request.Builder()
-                    .url("$API_ENDPOINT/auth/get_sms")
+                    .url("$API_ENDPOINT/auth/get_sms/wh")
                     .post(body)
                     .build()
 
@@ -39,7 +43,8 @@ object Api {
 
                 if (response.isSuccessful) {
                     val responseText = response.body.string()
-                    val data = Json.decodeFromString<ApiResponse>(responseText)
+                    val data = jsonCoder.decodeFromString<ApiResponse>(responseText)
+                    Log.i(TAG, "getSms: message: ${data.message}")
 
                     return data
                 }
@@ -65,14 +70,14 @@ object Api {
             code: String
         ): ApiResponse {
             try {
-                val payload = Json.encodeToString(AuthCheckSmsParams(phoneNumber, code))
+                val payload = jsonCoder.encodeToString(AuthCheckSmsParams(phoneNumber, code))
 
                 val body = FormBody.Builder()
                     .add("data", payload)
                     .build()
 
                 val request = Request.Builder()
-                    .url("$API_ENDPOINT/auth/check_sms")
+                    .url("$API_ENDPOINT/auth/check_sms/wh")
                     .post(body)
                     .build()
 
@@ -81,7 +86,7 @@ object Api {
 
                 if (response.isSuccessful) {
                     val responseText = response.body.string()
-                    val data = Json.decodeFromString<ApiResponse>(responseText)
+                    val data = jsonCoder.decodeFromString<ApiResponse>(responseText)
 
                     return data
                 }
