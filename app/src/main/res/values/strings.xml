@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Помощник Континент</string>
+    <string name="phoneHint">+7 (983) 255-25-25</string>
+    <string name="codeHint">0000</string>
+    <string name="buttonGetCode">Получить код</string>
+    <string name="buttonCheckCode">Войти</string>
+    <string name="auth_code">Код подтверждения</string>
+    <string name="phone_number">Введите номер телефона</string>
+    <string name="company_logo_cd">Логотип компании</string>
+    <string name="app_version">Версия: %s</string>
+    <string name="sms_sent_message">СМС код отправлен на номер телефона</string>
+    <string name="errorSendingSMS">Ошибка отправки СМС</string>
+    <string name="errorCheckingSMS">Ошибка проверки СМС</string>
+    <string name="ok">Ок</string>
+</resources>
