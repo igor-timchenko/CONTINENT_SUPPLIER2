@@ -19,7 +19,7 @@ import ru.contlog.mobile.helper.utils.await
 object Api {
     const val TAG = "Contlog.Api"
 
-    const val API_DOMAIN = "89.189.173.36:800"
+    const val API_DOMAIN = "89.189.173.36:800"   // http://89.189.173.36.:800/auth/get_sms/wh
     const val API_ENDPOINT = "http://$API_DOMAIN"
 
     private val client = OkHttpClient()

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Поставщик КОНТИНЕНТ</string>
     <string name="phoneHint">(983) 255-25-25</string>
-    <string name="codeHint">0000</string>
+    <string name="codeHint">00000</string>
     <string name="buttonGetCode">Получить код</string>
     <string name="buttonCheckCode">Войти</string>
     <string name="auth_code">Код подтверждения</string>

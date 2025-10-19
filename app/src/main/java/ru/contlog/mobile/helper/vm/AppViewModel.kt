@@ -86,7 +86,9 @@ class AppViewModel(private val appPreferencesRepository: AppPreferencesRepositor
     }
 
     fun logout() {
+        appPreferencesRepository.remove("app_login") // Чтобы удалить логин из памяти приложения
         appPreferencesRepository.saveApiAuthData("app_apiAuthData", null)
         apiAuthData = null
     }
 }
+

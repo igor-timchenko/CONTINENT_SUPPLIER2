@@ -112,7 +112,7 @@ class DivisionsListFragment : Fragment() {
         }
 
         binding.logout.setOnClickListener {
-            findNavController().navigate(R.id.action_workSitesFragment_to_productInfoFragment)
+            findNavController().navigate(R.id.action_workSitesFragment_to_loginFragment)
             viewModel.logout()
         }
 
