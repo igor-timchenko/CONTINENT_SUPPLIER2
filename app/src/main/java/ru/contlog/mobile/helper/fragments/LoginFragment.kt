@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -74,6 +75,11 @@ class LoginFragment : Fragment() {
         binding.codeSentMessage.visibility = View.INVISIBLE
         val phoneNumber = binding.phoneInput.text.toString()
 
+        if (phoneNumber.length != 10) {
+            Toast.makeText(requireContext(), "Введите 10 цифр номера телефона", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         lifecycleScope.launch(Dispatchers.IO) {
             val result = Api.Auth.getSms("7${phoneNumber}")
             launch(Dispatchers.Main) {
@@ -94,9 +100,19 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkCode() {
-        val phoneNumber = binding.phoneInput.text.toString()
-        val code = binding.codeInput.text.toString()
+        val phoneNumber = binding.phoneInput.text.toString().trim()
+        val code = binding.codeInput.text.toString().trim()
 
+        if (phoneNumber.length != 10) {
+            Toast.makeText(requireContext(), "Введите 10 цифр номера телефона", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (code.isEmpty()) {
+            Toast.makeText(requireContext(), "Введите код", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
         lifecycleScope.launch(Dispatchers.IO) {
             val result = Api.Auth.checkSms("7${phoneNumber}", code)
             launch(Dispatchers.Main) {
